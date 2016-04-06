@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="c73e0a39-3daa-42e6-8ed9-5e62d0a79def" ChangeDateTime="04/03/2016 18:41:59">
+    <Property Name="ElementName" Value="[dbo].[tblNumberInfo].[numOfDraws]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblNumberInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NumOfDrawsSinceLastHit" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7de75e96-4511-4f70-bd87-5953a66cf9ce" ChangeDateTime="04/03/2016 18:58:48">
+    <Property Name="ElementName" Value="[dbo].[tblNumberInfo].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblNumberInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DrawNumber" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="265926e5-59ad-4c16-82c6-8445c21bff99" ChangeDateTime="04/03/2016 19:01:35">
+    <Property Name="ElementName" Value="[dbo].[tblNumberInfo].[DrawNumber]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblNumberInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="633cf12f-87dd-41b1-802c-f13ac1c819ae" ChangeDateTime="04/03/2016 19:43:19">
+    <Property Name="ElementName" Value="[dbo].[tblNumberInfo].[DrawNumber]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblNumberInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LottoId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="48e32bec-2499-4761-8b84-aa7c0eafaa33" ChangeDateTime="04/03/2016 19:44:11">
+    <Property Name="ElementName" Value="[dbo].[tblNumberInfo].[Number]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblNumberInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NumbersOfLotto" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e2a18a32-a316-4a6b-a680-886b490f9f10" ChangeDateTime="04/03/2016 19:51:09">
+    <Property Name="ElementName" Value="[dbo].[tblNumberInfo].[DrawNumber]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblNumberInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DrawNo" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1a7f21b9-5a9d-4a02-bd14-d11d802f9ed5" ChangeDateTime="04/03/2016 19:52:29">
+    <Property Name="ElementName" Value="[dbo].[tblNumberInfo].[DrawNo]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblNumberInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DrawDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="375a6333-d304-4838-a5de-0061cd4aa361" ChangeDateTime="04/03/2016 20:09:34">
+    <Property Name="ElementName" Value="[dbo].[tblNumberInfo].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblNumberInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Number" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9db6f120-289f-45e8-ac1a-af95d986a175" ChangeDateTime="04/03/2016 20:19:08">
+    <Property Name="ElementName" Value="[dbo].[tblDistance].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblDistance]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LottoId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5bae3ece-1640-4c24-a6b5-efea8faf685a" ChangeDateTime="04/03/2016 20:21:28">
+    <Property Name="ElementName" Value="[dbo].[tblHitsInNumberRange].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblHitsInNumberRange]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LottoId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="59e08dfa-c00d-4aaf-9539-adc8ba5b9f4c" ChangeDateTime="04/03/2016 20:25:47">
+    <Property Name="ElementName" Value="[dbo].[tblLottoStats].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblLottoStats]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LottoId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7c8a0a36-efbc-4ef3-8fc3-9447b7932755" ChangeDateTime="04/03/2016 20:42:54">
+    <Property Name="ElementName" Value="[dbo].[tblNumberInfo].[Counter]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblNumberInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Distance" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d8772743-d2d9-4dff-ab50-218b80ef66c9" ChangeDateTime="04/03/2016 20:47:22">
+    <Property Name="ElementName" Value="[dbo].[tblLottoStats].[DrawNo]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblLottoStats]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DrawDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bb99b504-0cd9-471f-a832-5a82836a7c2d" ChangeDateTime="04/04/2016 19:43:22">
+    <Property Name="ElementName" Value="[dbo].[tblLottoStats].[SunDrawNumbers]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblLottoStats]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SumDrawNumbers" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e3a2bd34-b43f-4037-98b0-93ce0825f228" ChangeDateTime="04/04/2016 21:30:55">
+    <Property Name="ElementName" Value="[dbo].[Setting].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Setting]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b9175dfd-4af9-4762-92fe-ad2b8b0ab363" ChangeDateTime="04/05/2016 22:56:29">
+    <Property Name="ElementName" Value="[dbo].[tblNumberInfo].[DrawNo]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblNumberInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DrawDate" />
+  </Operation>
+</Operations>

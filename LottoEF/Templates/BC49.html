@@ -1,0 +1,38 @@
+﻿
+<div class="container-fluid" ng-controller="homeController" ng-init="getRange()">
+    <div class="col-lg-10 errors">{{error}}</div>
+    <br /><br />
+    <form class="form-horizontal" ng-submit="getRange(selectedStart)">
+        <div class="col-lg-4">
+            <select class="form-control" ng-model="selectedStart" ng-options="draw for draw in startDraws | orderBy: 'DrawNumber'"></select>
+            <input class="btn btn-info btn-primary btn-sm" type="submit" value="Submit" />
+        </div>
+        <hr />
+        <div class="col-lg-10">
+            <table class="table table-striped table-responsive">
+                <tr>
+                    <th>Draw NUmber</th>
+                    <th>Draw Date</th>
+                    <th>NUmber 1</th>
+                    <th>NUmber 2</th>
+                    <th>NUmber 3</th>
+                    <th>NUmber 4</th>
+                    <th>NUmber 5</th>
+                    <th>NUmber 6</th>
+                    <th>Bonus </th>
+                </tr>
+                <tr ng-repeat="d in BC49">
+                    <td>{{d.DrawNumber}}</td>
+                    <td>{{d.DrawDate}}</td>
+                    <td>{{d.Number1}}</td>
+                    <td>{{d.Number2}}</td>
+                    <td>{{d.Number3}}</td>
+                    <td>{{d.Number4}}</td>
+                    <td>{{d.Number5}}</td>
+                    <td>{{d.Number6}}</td>
+                    <td>{{d.Bonus}}</td>
+                </tr>
+            </table>
+        </div>      
+    </form>
+</div>

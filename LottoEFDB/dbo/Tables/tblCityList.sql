@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[tblCityList] (
+    [cityName] VARCHAR (25) NOT NULL,
+    CONSTRAINT [UQ__tblCityL__AEE8ADD1C850AD9F] UNIQUE NONCLUSTERED ([cityName] ASC)
+);
+

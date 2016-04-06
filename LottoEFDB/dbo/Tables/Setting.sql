@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Setting]
+(
+	[Name] VARCHAR(50) NOT NULL PRIMARY KEY, 
+    [Value] VARCHAR(MAX) NOT NULL
+)

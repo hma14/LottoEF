@@ -1,0 +1,141 @@
+﻿body {
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+}
+
+
+.table th {
+    font-size: .9em;
+}
+
+table td {
+    font-size: .8em;
+}
+
+
+.table .caption {
+    font-size: .8em;
+    text-align: left;
+    color: #fa5858;
+}
+
+.table-striped > thead {
+    background-color: #e3ebf0;
+}
+
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+tr.found {
+    background-color: #e3ebf7;
+}
+
+.table-striped > tbody > tr:nth-child(even) > td,
+tr.found {
+    background-color: #cfdfeb;
+    margin:10px;
+}
+
+
+
+.table > th, td {
+    border-left: 1px solid #fff;
+    border-left: 1px solid rgba(255,255,255,.65);
+    padding: .3em .5em .3em !important;
+    line-height: 1.5;
+    text-align: left;
+    vertical-align: top;
+}
+
+label {
+    font-size: 0.7em;
+}
+
+
+.date-form {
+    margin: 10px;
+    font-size: 0.9em;
+    z-index:10;
+}
+
+    .date-form input {
+        font-size: 0.9em;
+        color: brown;
+    }
+
+label.control-label span {
+    cursor: pointer;
+}
+
+.errors {
+    background-color: red !important;
+    color: aliceblue;
+    font-weight: bold;
+}
+
+.infos {
+    background-color: forestgreen !important;
+    color: white;
+}
+
+.warnings {
+    background-color: yellow !important;
+    color: red;
+    font-weight: bold;
+}
+
+.ids {
+    color: crimson;
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+.content {
+    margin-top: 50px;
+}
+
+div.navbar {
+    z-index: 1000;
+}
+
+.date-picker {
+    z-index: 1;
+}
+
+.plusSign {
+    font-size: 1.2em;
+}
+
+.itemName {
+    color: forestgreen;
+    font-weight: bold;
+}
+
+.title {
+    color: cadetblue;
+    text-align: center;
+    margin: 15px;
+}
+
+.errorLink {
+    color: red;
+}
+
+.alert {
+    font-weight: bold;
+}
+
+.searches {
+    float: right;
+
+    margin-top: 55px;
+}
+
+div.text-center a {
+    font-size:.8em;
+
+}
+
