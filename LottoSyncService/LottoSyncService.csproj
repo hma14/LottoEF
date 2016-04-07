@@ -49,10 +49,6 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -88,6 +84,28 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SchedulerTasks\EFBritishLotto.xml" />
+    <Content Include="SchedulerTasks\EFCaSuperlottoPlus.xml" />
+    <Content Include="SchedulerTasks\EFColoradoLotto.xml" />
+    <Content Include="SchedulerTasks\EFConnecticutLotto.xml" />
+    <Content Include="SchedulerTasks\EFEuroJackpot.xml" />
+    <Content Include="SchedulerTasks\EFEuroMillions.xml" />
+    <Content Include="SchedulerTasks\EFFloridaFantasy5.xml" />
+    <Content Include="SchedulerTasks\EFFloridaLotto.xml" />
+    <Content Include="SchedulerTasks\EFFloridaLucky.xml" />
+    <Content Include="SchedulerTasks\EFGermanLotto.xml" />
+    <Content Include="SchedulerTasks\EFLottery 649.xml" />
+    <Content Include="SchedulerTasks\EFLottoMax.xml" />
+    <Content Include="SchedulerTasks\EFMegaMillions.xml" />
+    <Content Include="SchedulerTasks\EFNewJerseyPick6Lotto.xml" />
+    <Content Include="SchedulerTasks\EFNYLotto.xml" />
+    <Content Include="SchedulerTasks\EFOZLottoMon.xml" />
+    <Content Include="SchedulerTasks\EFOZLottoTue.xml" />
+    <Content Include="SchedulerTasks\EFPowerBall.xml" />
+    <Content Include="SchedulerTasks\EFSevenLotto.xml" />
+    <Content Include="SchedulerTasks\EFSSQ.xml" />
+    <Content Include="SchedulerTasks\EFSuperLotto.xml" />
+    <Content Include="SchedulerTasks\EF_BC49.xml" />
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>

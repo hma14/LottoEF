@@ -7,7 +7,7 @@ using Service;
 using Autofac;
 using Repository.SQL;
 using Model;
-using NLog;
+
 
 namespace LottoSyncService
 {
@@ -93,7 +93,7 @@ namespace LottoSyncService
                 
                 foreach (var draw in draws)
                 {
-                    if (draw.FieldsChanged == 0) continue;
+                    //if (draw.FieldsChanged == 0) continue;
                     
                     foreach (var n in numbers)
                     {

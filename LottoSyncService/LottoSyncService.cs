@@ -10,7 +10,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using NLog;
+
 
 
 namespace LottoSyncService
@@ -25,19 +25,19 @@ namespace LottoSyncService
 
         protected override void OnStart(string[] args)
         {
-            this.WriteToFile("LottoSync Service started {0}");
             this.ScheduleService();
         }
 
         protected override void OnStop()
         {
-            this.WriteToFile("LottoSync Service stopped {0}");
+           
+
             this.Schedular.Dispose();
         }
 
 
         private Timer Schedular;
-        private readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        //private readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public void ScheduleService()
         {
@@ -47,10 +47,7 @@ namespace LottoSyncService
                 string mode = ConfigurationManager.AppSettings["Mode"].ToUpper();
 
 
-                //this.WriteToFile("LottoSync Service Mode: " + mode + " {0}");
-                // Execute task
-                this.Execute();
-                Logger.Info(string.Format("LottoSync Service Mode: {0}", mode));
+                //Logger.Info(string.Format("LottoSync Service Mode: {0}", mode));
 
                 //Set the Default Time.
                 DateTime scheduledTime = DateTime.MinValue;
@@ -84,7 +81,7 @@ namespace LottoSyncService
                 string schedule = string.Format("{0} day(s) {1} hour(s) {2} minute(s) {3} seconds(s)", timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
 
                 //this.WriteToFile("Simple Service scheduled to run after: " + schedule + " {0}");
-                Logger.Info(string.Format("Simple Service scheduled to run after: {0}",  schedule));
+                //Logger.Info(string.Format("Simple Service scheduled to run after: {0}",  schedule));
 
                 //Get the difference in Minutes between the Scheduled and Current Time.
                 int dueTime = Convert.ToInt32(timeSpan.TotalMilliseconds);
@@ -95,7 +92,7 @@ namespace LottoSyncService
             catch (Exception ex)
             {
                 //WriteToFile("Simple Service Error on: {0} " + ex.Message + ex.StackTrace);
-                Logger.Error(string.Format("Lotto Sync Service Error on: {0} ", ex.Message + ex.StackTrace));
+                //Logger.Error(string.Format("Lotto Sync Service Error on: {0} ", ex.Message + ex.StackTrace));
 
                 //Stop the Windows Service.
                 using (System.ServiceProcess.ServiceController serviceController = new System.ServiceProcess.ServiceController("SyncService"))
@@ -108,23 +105,10 @@ namespace LottoSyncService
         private void SchedularCallback(object e)
         {
             //this.WriteToFile("Simple Service Log: {0}");
-            Logger.Info("Lotto Syunc Service");
+            //Logger.Info("Lotto Syunc Service");
             this.ScheduleService();
         }
 
-        private void Execute()
-        {
-            Logger.Info("Running task");
-
-        }
-        private void WriteToFile(string text)
-        {
-            string path = "D:\\ServiceLog.txt";
-            using (StreamWriter writer = new StreamWriter(path, true))
-            {
-                writer.WriteLine(string.Format(text, DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt")));
-                writer.Close();
-            }
-        }
+        
     }
 }

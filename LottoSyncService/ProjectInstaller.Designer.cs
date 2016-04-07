@@ -33,12 +33,16 @@
             // 
             // serviceProcessInstaller1
             // 
-            this.serviceProcessInstaller1.Password = null;
-            this.serviceProcessInstaller1.Username = null;
+            this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
+            this.serviceProcessInstaller1.Password = @"m1985425";
+            this.serviceProcessInstaller1.Username = @"webserver-pc\henryma14@gmail.com"; 
             // 
             // serviceInstaller1
             // 
+            this.serviceInstaller1.Description = "Lotto Data Sync program";
+            this.serviceInstaller1.DisplayName = "LottoSyncServices";
             this.serviceInstaller1.ServiceName = "SyncService";
+            this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             this.serviceInstaller1.AfterInstall += new System.Configuration.Install.InstallEventHandler(this.serviceInstaller1_AfterInstall);
             // 
             // ProjectInstaller
