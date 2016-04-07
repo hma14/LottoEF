@@ -20,40 +20,40 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
     })
     $locationProvider.html5Mode(true);
 })
-.factory('BC49', ['$resource', function ($resource) {
-    return $resource('api/BC49/:id', {start: '@start'}, {
+.factory('Lotto', ['$resource', function ($resource) {
+    return $resource('api/tblNumberInfoes/:id', { lottoId: '@lottoId', startDrawNo: '@startDrawNo' }, {
         get: {method:'GET', cache:true, isArray:true},
-        getById: { method: 'GET', cache: true, url: 'api/BC49/5', isArray: true },
-        getByRange: { method: 'GET', cache: true, url: 'api/BC49?start=:start', isArray: true },
+        getById: { method: 'GET', cache: true, url: 'api/tblNumberInfoes/5', isArray: true },
+        getByRange: { method: 'GET', cache: true, url: 'api/tblNumberInfoes?lottoId=:lottoId&startDrawNo=:startDrawNo', isArray: true },
     })
 }])
-.controller('homeController', ['$scope', '$log',  'BC49',  function ($scope, $log, BC49) {
+.controller('homeController', ['$scope', '$log',  'Lotto',  function ($scope, $log, Lotto) {
     $scope.BC49 = [];
     $scope.error = '';
     $scope.drawNumber = 2000;
+
+    $scope.rows = [];
 
     $scope.startDraws = [1000, 1500, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
 
     var successCallBack = function(response)
     {
-        $scope.BC49 = response;
+        $scope.rows = response;
+               
         $log.info(response);
+       
     }
     var errorCallBack = function(reason)
     {
         $scope.error = reason.data;
         $log.info(reason);
-    }
-
-    $scope.init = function()
-    {
-        BC49.get().$promise.then(successCallBack, errorCallBack);
-    }
+    }    
     
-    $scope.getRange = function (selectedStart)
+    $scope.getRange = function (lottoId, selectedStart)
     {
-        BC49.getByRange({ start: selectedStart })
+        Lotto.getByRange({ lottoId: lottoId,  startDrawNo: selectedStart })
         .$promise.then(successCallBack, errorCallBack);
+        
     }
         
 }])

@@ -1,4 +1,4 @@
-namespace Repository.SQL
+namespace LottoEF.Models
 {
     using System;
     using System.Collections.Generic;
@@ -9,15 +9,14 @@ namespace Repository.SQL
     [Table("tblNumberInfo")]
     public partial class tblNumberInfo
     {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
-        
+
         public int Number { get; set; }
 
         public int LottoId { get; set; }
 
         public int DrawNo { get; set; }
+
         public DateTime DrawDate { get; set; }
 
         public int Distance { get; set; }

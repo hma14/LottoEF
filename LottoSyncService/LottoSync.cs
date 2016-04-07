@@ -82,18 +82,19 @@ namespace LottoSyncService
 
                 List<int> numbers = new List<int>();
                 List<tblNumberInfo> numberInfos = new List<tblNumberInfo>();
-
+                int[] dist = new int[100];
                 for (int i = 0; i < LottoNumbers.BC49; i++)
                 {
                     numbers.Add(i + 1);
+                    dist[i + 1] = 0;
                 }
                 // get last row in tblNumberInfo table
                 var lastdraw = syncService.GetLastRow(LottoIDs.BC49);
-
+                
                 foreach (var draw in draws)
                 {
                     if (draw.FieldsChanged == 0) continue;
-
+                    
                     foreach (var n in numbers)
                     {
 
@@ -109,7 +110,7 @@ namespace LottoSyncService
                         }
                         else
                         {
-                            info.Distance = 0;
+                            info.Distance = dist[n];
                         }
 
                         if (n == draw.Number1 || n == draw.Number2 ||
@@ -124,7 +125,7 @@ namespace LottoSyncService
                         Increment(ref info);
 
                         numberInfos.Add(info);
-
+                        dist[n] = info.Distance;
                     }
                 }
                 if (numberInfos.Count > 0)

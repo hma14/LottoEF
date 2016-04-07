@@ -166,52 +166,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\BC49Controller.cs" />
+    <Compile Include="Controllers\tblNumberInfoesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BC49.cs" />
-    <Compile Include="Models\BritishLotto.cs" />
-    <Compile Include="Models\CaSuperlottoPlu.cs" />
-    <Compile Include="Models\CaSuperlottoPlus_Mega.cs" />
-    <Compile Include="Models\ColoradoLotto.cs" />
-    <Compile Include="Models\ConnecticutLotto.cs" />
-    <Compile Include="Models\EuroJackpot.cs" />
-    <Compile Include="Models\EuroJackpot_Euros.cs" />
-    <Compile Include="Models\EuroMillion.cs" />
-    <Compile Include="Models\EuroMillions_LuckyStars.cs" />
-    <Compile Include="Models\FloridaFantasy5.cs" />
-    <Compile Include="Models\FloridaLotto.cs" />
-    <Compile Include="Models\FloridaLucky.cs" />
-    <Compile Include="Models\GermanLotto.cs" />
-    <Compile Include="Models\Lottery.cs" />
-    <Compile Include="Models\Lotto.cs" />
-    <Compile Include="Models\LottoDbContext.cs" />
-    <Compile Include="Models\LottoMax.cs" />
-    <Compile Include="Models\LottoName.cs" />
-    <Compile Include="Models\MegaMillion.cs" />
-    <Compile Include="Models\MegaMillions_MegaBall.cs" />
-    <Compile Include="Models\NewJerseyPick6Lotto.cs" />
-    <Compile Include="Models\NYLotto.cs" />
-    <Compile Include="Models\NYSweetMillion.cs" />
-    <Compile Include="Models\OregonMegabuck.cs" />
-    <Compile Include="Models\OZLottoMon.cs" />
-    <Compile Include="Models\OZLottoSat.cs" />
-    <Compile Include="Models\OZLottoTue.cs" />
-    <Compile Include="Models\OZLottoWed.cs" />
-    <Compile Include="Models\PowerBall.cs" />
-    <Compile Include="Models\PowerBall_PowerBall.cs" />
-    <Compile Include="Models\SevenLotto.cs" />
-    <Compile Include="Models\SSQ.cs" />
-    <Compile Include="Models\SSQ_Blue.cs" />
-    <Compile Include="Models\SuperLotto.cs" />
-    <Compile Include="Models\SuperLotto_Rear.cs" />
-    <Compile Include="Models\tblBlackList.cs" />
-    <Compile Include="Models\tblCityList.cs" />
-    <Compile Include="Models\tblCountry.cs" />
-    <Compile Include="Models\tblProvinceState.cs" />
-    <Compile Include="Models\tblTransaction.cs" />
-    <Compile Include="Models\tblUser.cs" />
+    <Compile Include="Models\LottoWebContext.cs" />
+    <Compile Include="Models\tblNumberInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1050,7 +1010,20 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\version.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Repository.SQL\Repository.SQL.csproj">
+      <Project>{cc9b948d-c21f-431e-ad2e-c100b5b5f7a5}</Project>
+      <Name>Repository.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service.Lotto\Service.Lotto.csproj">
+      <Project>{53c1205d-624e-4380-a288-2f0066722997}</Project>
+      <Name>Service.Lotto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{323dc5ac-a234-4386-bc8f-734b3d3d516d}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

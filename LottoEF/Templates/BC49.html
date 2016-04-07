@@ -1,8 +1,8 @@
 ﻿
-<div class="container-fluid" ng-controller="homeController" ng-init="getRange()">
+<div class="container-fluid" ng-controller="homeController" ng-init="getRange(2, 2500)">
     <div class="col-lg-10 errors">{{error}}</div>
     <br /><br />
-    <form class="form-horizontal" ng-submit="getRange(selectedStart)">
+    <form class="form-horizontal" ng-submit="getRange(2, selectedStart)">
         <div class="col-lg-4">
             <select class="form-control" ng-model="selectedStart" ng-options="draw for draw in startDraws | orderBy: 'DrawNumber'"></select>
             <input class="btn btn-info btn-primary btn-sm" type="submit" value="Submit" />
@@ -11,26 +11,18 @@
         <div class="col-lg-10">
             <table class="table table-striped table-responsive">
                 <tr>
-                    <th>Draw NUmber</th>
+                    <th>Draw Number</th>
                     <th>Draw Date</th>
-                    <th>NUmber 1</th>
-                    <th>NUmber 2</th>
-                    <th>NUmber 3</th>
-                    <th>NUmber 4</th>
-                    <th>NUmber 5</th>
-                    <th>NUmber 6</th>
-                    <th>Bonus </th>
+                    <th ng-repeat="col in rows[0]">{{col.Number}}</th>                   
                 </tr>
-                <tr ng-repeat="d in BC49">
-                    <td>{{d.DrawNumber}}</td>
-                    <td>{{d.DrawDate}}</td>
-                    <td>{{d.Number1}}</td>
-                    <td>{{d.Number2}}</td>
-                    <td>{{d.Number3}}</td>
-                    <td>{{d.Number4}}</td>
-                    <td>{{d.Number5}}</td>
-                    <td>{{d.Number6}}</td>
-                    <td>{{d.Bonus}}</td>
+                <tr ng-repeat="row in rows">
+                    <td>{{row[0].DrawNo}}</td>
+                    <td>{{row[1].DrawDate | date:'yyyy-MM-dd' }}</td>
+                    <td ng-repeat="col in row" ><span ng-show="col.isHit" class="hit">{{col.Number}} ({{col.Distance}})
+                                                </span><span ng-show="!col.isHit">{{col.Number}} ({{col.Distance}})</span> 
+                    </td>
+
+                    
                 </tr>
             </table>
         </div>      
