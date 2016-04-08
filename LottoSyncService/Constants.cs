@@ -8,7 +8,8 @@ namespace LottoSyncService
 {
     public class Constants
     {
-        //public const string 
+        public const string LogName = "LottoSyncServiceLog";
+        public const string LogSource = "LottoSyncServiceLogSource";
     }
 
     public class Tables

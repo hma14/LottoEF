@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
@@ -10,25 +11,16 @@ namespace LottoSyncService
 {
     class Program
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         public static void Main()
-        {
-         
-            Console.WriteLine();
-            Console.WriteLine("UserInteractive: {0}", Environment.UserInteractive);
-
+        {       
+            Logger.Info(string.Format("UserInteractive: {0}", Environment.UserInteractive));
             IoCContainer.Build();
 
-#if false
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[]
-            {
-                new SyncService()
-            };
-            ServiceBase.Run(ServicesToRun);
-#else
             if (Environment.UserInteractive)
             {
                 #region Start as Console Application
@@ -37,13 +29,12 @@ namespace LottoSyncService
                     LottoSync s = new LottoSync();
                     s.Start();
 
-                    Console.WriteLine("Lotto Sync complete");
-                    Console.ReadLine();
+                    Logger.Info("Lotto Sync complete");
                 }
                 catch (Exception er)
                 {
                     Console.WriteLine(er.Message);
-                }
+                 }
                 #endregion
             }
             else
@@ -52,7 +43,6 @@ namespace LottoSyncService
                 ServiceBase.Run(new LottoSyncService());
                 #endregion
             }
-#endif
         }
     }
 }

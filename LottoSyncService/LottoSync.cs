@@ -7,7 +7,7 @@ using Service;
 using Autofac;
 using Repository.SQL;
 using Model;
-
+using NLog;
 
 namespace LottoSyncService
 {
@@ -15,7 +15,7 @@ namespace LottoSyncService
     {
         private static ISyncService syncService;
         private const string LASTRUNSETTING = "Lotto - {0}: Sync Version";
-        //private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         static LottoSync()
         {
@@ -40,6 +40,7 @@ namespace LottoSyncService
             {
                 throw new Exception("Lotto Service: Last Sync Version setting can not be parsed into an a long");
             }
+            Logger.Info(string.Format("Last version: {0}", versionId));
             return versionId;
         }
         public static void SetLastVersion(string tableName, long versionid)
@@ -49,36 +50,28 @@ namespace LottoSyncService
 
         public void Start()
         {
-            //Logger.Info("Starting Polling");
-            Console.WriteLine("Starting Polling");
+            Logger.Info("Starting Polling");
             try
             {
                 TrackingBC49();
             }
             catch (Exception ex)
             {
-                //Logger.Error(ex.Message);
-                Console.WriteLine(ex.Message);
+                Logger.Error(ex.Message);
             }
-
-            //Logger.Info("Finished Polling");
-            Console.WriteLine("Finished Polling");
-
-
+            Logger.Info("Finished Polling");
         }
 
         private void TrackingBC49()
         {
             try
             {
-                //Logger.Info("Syncing BC49");
-                Console.WriteLine("Syncing BC49");
+                Logger.Info("Syncing BC49");
 
                 long versionid = GetLastVersion(Tables.BC49);
                 SyncResult<BC49> draws = syncService.GetSyncBC49(versionid);
 
-                //Logger.Info("Detected {0} changes for {1}", draws.Count, Tables.BC49);
-                Console.WriteLine(string.Format("Detected {0} changes for {1}", draws.Count, Tables.BC49));
+                Logger.Info("Detected {0} changes for {1}", draws.Count, Tables.BC49);
 
                 List<int> numbers = new List<int>();
                 List<tblNumberInfo> numberInfos = new List<tblNumberInfo>();
@@ -137,8 +130,7 @@ namespace LottoSyncService
             }
             catch (Exception e)
             {
-                //Logger.Error(e.Message);
-                Console.WriteLine(e.Message);
+                Logger.Error(e.Message);
             }
         }
 

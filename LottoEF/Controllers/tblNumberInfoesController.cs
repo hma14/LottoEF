@@ -10,12 +10,14 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using LottoEF.Models;
+using NLog;
 
 namespace LottoEF.Controllers
 {
     public class tblNumberInfoesController : ApiController
     {
         private LottoWebContext db = new LottoWebContext();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         // GET: api/tblNumberInfoes
         public IQueryable<tblNumberInfo> GettblNumberInfoes()
@@ -24,7 +26,7 @@ namespace LottoEF.Controllers
         }
         public List<List<tblNumberInfo>> GettblNumberInfoes(int lottoId, int startDrawNo)
         {
-            
+            Logger.Info(string.Format("GettblNumberInfoes(), lottoId: {0}, startDrawNo: {1}", lottoId, startDrawNo));
             var list = db.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo >= startDrawNo);
             List<List<tblNumberInfo>> nList = new List<List<tblNumberInfo>>();
             int lastDrawNo = list.AsQueryable().ToList().Last().DrawNo;
