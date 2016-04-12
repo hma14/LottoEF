@@ -181,6 +181,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\ajax_loader.gif" />
+    <Content Include="images\spinner.png" />
     <Content Include="index.html" />
     <Content Include="PythonSyncScripts\BC49.py" />
     <Content Include="PythonSyncScripts\BritishLotto.py" />

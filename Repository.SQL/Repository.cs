@@ -84,12 +84,12 @@ namespace Repository.SQL
             }
         }
 
-        public tblNumberInfo GetLastRow(int lottoId)
+        public List<tblNumberInfo> GetLastRow(int lottoId)
         {
             using (var ctx = new LottoContext())
             {
-                var rows = ctx.tblNumberInfoes.Where(x => x.LottoId == lottoId).AsEnumerable().ToList();
-                return rows.LastOrDefault();
+                var lastDrawNo = ctx.tblNumberInfoes.Where(x => x.LottoId == lottoId).AsEnumerable().ToList().Last().DrawNo;
+                return ctx.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo == lastDrawNo).AsEnumerable().ToList();
             }
         }
 
@@ -99,6 +99,13 @@ namespace Repository.SQL
             {
                 ctx.tblNumberInfoes.AddRange(numberInfos);
                 ctx.SaveChanges();
+            }
+        }
+        public tblNumberInfo GetLastDrawNo(int lottoId)
+        {
+            using (var ctx = new LottoContext())
+            {
+                return ctx.tblNumberInfoes.Where(x => x.LottoId == lottoId).AsEnumerable().ToList().Last();
             }
         }
     }

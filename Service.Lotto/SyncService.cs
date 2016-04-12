@@ -32,7 +32,7 @@ namespace Service.Lotto
             return _repository.GetSyncBC49(lastVersion);
         }
 
-        public tblNumberInfo GetLastRow(int lottoId)
+        public List<tblNumberInfo> GetLastRow(int lottoId)
         {
             return _repository.GetLastRow(lottoId);
         }
@@ -40,6 +40,10 @@ namespace Service.Lotto
         public void InsertDraws(List<tblNumberInfo> numberInfos)
         {
             _repository.InsertDraws(numberInfos);
+        }
+        public tblNumberInfo GetLastDrawNo(int lottoId)
+        {
+            return _repository.GetLastDrawNo(lottoId);
         }
     }
 }

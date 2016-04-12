@@ -15,7 +15,9 @@ namespace Repository.SQL
         void SetSetting(string name, string value);
         SyncResult<T> GetSyncResults<T>(long lastVersion, string procName);
         SyncResult<BC49> GetSyncBC49(long lastVersion);
-        tblNumberInfo GetLastRow(int lottoId);
+        List<tblNumberInfo> GetLastRow(int lottoId);
         void InsertDraws(List<tblNumberInfo> numberInfos);
+        tblNumberInfo GetLastDrawNo(int lottoId);
+
     }
 }

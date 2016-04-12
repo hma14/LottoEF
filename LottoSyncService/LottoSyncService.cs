@@ -60,7 +60,7 @@ namespace LottoSyncService
 
         private void SetTimer()
         {
-            eventLog.WriteEntry("N SetTimer()");
+            eventLog.WriteEntry("In SetTimer()");
             try
             {
                 double inter = (double)GetNextInterval();
@@ -81,7 +81,8 @@ namespace LottoSyncService
             TimeSpan ts = new TimeSpan();
 
             ts = t - System.DateTime.Now;
-           
+            eventLog.WriteEntry(string.Format("t = {0}, Now = {1}, ts = {2}", t, DateTime.Now, ts));
+
             if (ts.TotalMilliseconds < 0)
             {
                 ts = t.AddDays(1) - System.DateTime.Now; //Here you can increase the timer interval based on your requirments.   

@@ -1,5 +1,6 @@
 ﻿body {
     width: 100%;
+    margin-right:2px!important;
 }
 
 .container {
@@ -47,6 +48,7 @@ tr.found {
     line-height: 1.5;
     text-align: left;
     vertical-align: top;
+
 }
 
 label {
@@ -142,5 +144,93 @@ div.text-center a {
 .hit{
     color:red;
     font-weight:bold;
+    background-color:yellow;
+    background-size:auto;
+   
+    
+}
+
+
+table {
+  border-spacing: 2.5rem;
+  white-space:nowrap;
+  width: 900px; 
+  table-layout:fixed;
+}
+
+td, th {
+  width: 10rem;
+  height: 4rem;
+  border: 3px  #ccc;
+  text-align: center;
+  
+}
+
+td 
+{
+    color:darkcyan;
+
+    font-size:1em!important;
+    vertical-align:middle;
+}
+
+th
+{
+    color:brown;
+    background-color:antiquewhite!important;
+   
+}
+
+.distance {
+    color:brown;
+    font-size:.8em!important;
+    font-style:italic;
+}
+
+.lotto{
+    color:chocolate;
+}
+
+table 
+{
+    margin:5px!important;
+}
+
+
+#ddl1
+{
+    width:250px;
+    display:contents; 
+    height:34px;
+    padding:6px 12px;
+    font-size:14px;
+    line-height:1.4285;
+    color:#555555;
+    vertical-align:middle;
+    background-color:#ffffff;
+    border:1px solid #cccccc;
+    border-radius:4px;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition:border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
+    transition:border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
+
+}
+
+label
+{
+    font-size:1em;
+
+}
+.irc_mi {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px; /* half width of the spinner gif */
+    margin-top: -50px; /* half height of the spinner gif */
+    text-align: center;
+    z-index: 1;
+    width: 140px; /* width of the spinner gif */
+    height: 140px; /*hight of the spinner gif +2px to fix IE8 issue */
 }
 

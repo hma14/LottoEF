@@ -5,7 +5,7 @@
 'use restrict';
 
 var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
-.config(function($routeProvider, $locationProvider){
+.config(function ($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
         templateUrl: 'Templates/BC49.html',
@@ -16,44 +16,42 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
         controller: 'homeController'
     })
     .otherwise({
-        redirestTo:'/'
+        redirestTo: '/'
     })
     $locationProvider.html5Mode(true);
 })
 .factory('Lotto', ['$resource', function ($resource) {
     return $resource('api/tblNumberInfoes/:id', { lottoId: '@lottoId', startDrawNo: '@startDrawNo' }, {
-        get: {method:'GET', cache:true, isArray:true},
+        get: { method: 'GET', cache: true, isArray: true },
         getById: { method: 'GET', cache: true, url: 'api/tblNumberInfoes/5', isArray: true },
         getByRange: { method: 'GET', cache: true, url: 'api/tblNumberInfoes?lottoId=:lottoId&startDrawNo=:startDrawNo', isArray: true },
     })
 }])
-.controller('homeController', ['$scope', '$log',  'Lotto',  function ($scope, $log, Lotto) {
+.controller('homeController', ['$scope', '$log', 'Lotto', '$timeout', function ($scope, $log, Lotto, $timeout) {
     $scope.BC49 = [];
     $scope.error = '';
-    $scope.drawNumber = 2000;
-
     $scope.rows = [];
 
     $scope.startDraws = [1000, 1500, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
+    $scope.selectedStart = $scope.startDraws[7]; // default selection
 
-    var successCallBack = function(response)
-    {
+
+    var successCallBack = function (response) {
+        $scope.error = '';       
         $scope.rows = response;
-               
-        $log.info(response);
-       
+        $scope.loading = false;
+        //$log.info(response);
     }
-    var errorCallBack = function(reason)
-    {
+    var errorCallBack = function (reason) {
         $scope.error = reason.data;
         $log.info(reason);
-    }    
-    
-    $scope.getRange = function (lottoId, selectedStart)
-    {
-        Lotto.getByRange({ lottoId: lottoId,  startDrawNo: selectedStart })
-        .$promise.then(successCallBack, errorCallBack);
-        
     }
-        
+
+    $scope.getRange = function (lottoId, selectedStart) {
+        $scope.loading = true;
+        Lotto.getByRange({ lottoId: lottoId, startDrawNo: selectedStart })
+        .$promise.then(successCallBack, errorCallBack);
+
+    }
+
 }])
