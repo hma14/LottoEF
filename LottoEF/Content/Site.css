@@ -146,8 +146,17 @@ div.text-center a {
     font-weight:bold;
     background-color:yellow;
     background-size:auto;
+    padding:10px;
    
-    
+}
+
+.nohit{
+ 
+    font-weight:bold;
+    background-color:antiquewhite;
+    background-size:auto;
+    padding:10px;
+   
 }
 
 
@@ -187,6 +196,12 @@ th
     font-style:italic;
 }
 
+.saveddistance {
+    color:forestgreen;
+    font-size:.8em!important;
+    font-style:italic;
+}
+
 .lotto{
     color:chocolate;
 }
@@ -197,9 +212,28 @@ table
 }
 
 
-#ddl1
+.ddl
 {
-    width:250px;
+    width:200px;
+    display:contents; 
+    height:34px;
+    padding:6px 12px;
+    font-size:14px;
+    line-height:1.4285;
+    color:#555555;
+    vertical-align:middle;
+    background-color:#ffffff;
+    border:1px solid #cccccc;
+    border-radius:4px;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition:border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
+    transition:border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
+
+}
+.ddlLonger
+{
+    width:400px;
     display:contents; 
     height:34px;
     padding:6px 12px;
@@ -234,3 +268,46 @@ label
     height: 140px; /*hight of the spinner gif +2px to fix IE8 issue */
 }
 
+.total{
+    color:red;
+    font-style:italic;
+}
+
+
+
+/*.scroll {
+  border: 0;
+  border-collapse: collapse;
+}
+
+.scroll tr {
+  display: flex;
+}
+
+.scroll td {
+  padding: 3px;
+  flex: 1 auto;
+  border: 1px solid #aaa;
+  width: 1px;
+  word-wrap: break;
+}
+
+.scroll thead tr:after {
+  content: '';
+  overflow-y: scroll;
+  visibility: hidden;
+  height: 0;
+}
+
+.scroll thead th {
+  flex: 1 auto;
+  display: block;
+  border: 1px solid #000;
+}
+
+.scroll tbody {
+  display: block;
+  width: 100%;
+  overflow-y: auto;
+  height: 200px;
+}*/

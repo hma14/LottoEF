@@ -8,6 +8,7 @@
     [Distance] INT NOT NULL DEFAULT (0) , 
     [SavedDistance] INT NOT NULL DEFAULT (0) , 
     [isHit] BIT NOT NULL DEFAULT (0), 
+    [Frequncy] INT NULL, 
     CONSTRAINT [PK_tblNumberInfo] PRIMARY KEY ([Id]) 
 )
 

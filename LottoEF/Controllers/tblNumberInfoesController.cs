@@ -29,15 +29,80 @@ namespace LottoEF.Controllers
             Logger.Info(string.Format("GettblNumberInfoes(), lottoId: {0}, startDrawNo: {1}", lottoId, startDrawNo));
             var list = db.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo >= startDrawNo);
             List<List<tblNumberInfo>> nList = new List<List<tblNumberInfo>>();
-            int lastDrawNo = list.AsQueryable().ToList().Last().DrawNo;
-            for (int d = startDrawNo; d <= lastDrawNo; d++)
+            if (list != null && list.Count() > 0)
             {
-                var l = list.Where(x => x.DrawNo == d).ToList();
-                nList.Add(l);
+                int lastDrawNo = list.AsQueryable().ToList().Last().DrawNo;
+                for (int d = startDrawNo; d <= lastDrawNo; d++)
+                {
+                    var l = list.Where(x => x.DrawNo == d).ToList();
+                    nList.Add(l);
+                }
             }
             return nList;
             //return db.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo >= startDrawNo);
         }
+
+        // GET: api/GettblNumberInfoes
+        public List<List<tblNumberInfo>> GettblNumberInfoes(int lottoId, int startDrawNo, bool isDesc)
+        {
+            Logger.Info(string.Format("GettblNumberInfos(), lottoId: {0}, startDrawNo: {1}", lottoId, startDrawNo));
+            var list = db.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo >= startDrawNo);
+
+            List<List<tblNumberInfo>> nList = new List<List<tblNumberInfo>>();
+            int lastDrawNo = list.AsQueryable().ToList().Last().DrawNo;
+            for (int d = startDrawNo; d <= lastDrawNo; d++)
+            {
+                var l = list.Where(x => x.DrawNo == d).ToList();
+                if (isDesc == true)
+                {
+                    nList.Add(l.OrderByDescending(x => x.Frequncy).ToList());
+                }
+                else
+                {
+                    nList.Add(l.OrderBy(x => x.Frequncy).ToList());
+                }
+
+            }
+            return nList;
+            //return db.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo >= startDrawNo);
+        }
+
+        // GET: api/GettblNumberInfoes
+        public List<DistanceInfo> GettblNumberInfoes(int lottoId, int startDrawNo, int flag)
+        {
+            Logger.Info(string.Format("GettblNumberInfos(), lottoId: {0}, startDrawNo: {1}", lottoId, startDrawNo));
+            var list = db.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo >= startDrawNo);
+
+            List<DistanceInfo> nList = new List<DistanceInfo>();
+            int lastDrawNo = list.AsQueryable().ToList().Last().DrawNo;
+            for (int d = startDrawNo; d <= lastDrawNo; d++)
+            {
+                var l = list.Where(x => x.DrawNo == d).ToArray();
+                DistanceInfo di = new DistanceInfo();
+                for(int i = 0; i < 200; i++)
+                {
+                    di.dic[i] = 0;
+                }
+                di.DrawNumber = l.First().DrawNo;
+                di.DrawDate = l.First().DrawDate;
+                int total = 0;
+                for (int i = 0; i < l.Length; i++)
+                {
+                    if (l[i].isHit == true)
+                    {
+                        di.dic[l[i].SavedDistance]++;
+                        if (l[i].SavedDistance <= 11)
+                        {
+                            total++;
+                        }
+                    }                    
+                }
+                di.Total = total;
+                nList.Add(di);
+            }
+            return nList;
+        }
+
 
         // GET: api/tblNumberInfoes/5
         [ResponseType(typeof(tblNumberInfo))]

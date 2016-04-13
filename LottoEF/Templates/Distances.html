@@ -1,0 +1,51 @@
+﻿<div class="container-fluid" ng-controller="homeController" ng-init="getDistances(2, selectedStart)">
+
+    <div class="col-lg-12 errors" ng-show="error != ''">{{error}}</div>
+    <br />
+    <hr />
+    <form ng-submit="getDistances(2, selectedStart)">
+        <div class="container-fluid col-lg-12">
+            <select class="ddlLonger form-horizontal form-inline" ng-model="selectedStat" ng-options="stat.id as stat.name for stat in statistics"></select>
+            <label for="ddl1" class="text-info te">Select a start draw:</label>
+            <select id="ddl1" class="ddl form-horizontal form-inline" ng-model="selectedStart" ng-options="draw for draw in startDraws | orderBy: 'draw'"></select>
+            <input class="btn btn-info btn-primary" id="submit" type="submit" value="Submit" />
+
+        </div>
+    </form>
+    <div class="form-horizontal col-lg-12">
+        <img class="irc_mi" src="https://media.giphy.com/media/npCmk0VCFHyUM/giphy.gif" ng-show="loading">
+        <table class="scroll table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>Draw Number</th>
+                    <th>Draw Date</th>
+                    <th ng-repeat="col in distanceCols">{{col}}</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in rows">
+
+                    <td class="lotto">{{row.DrawNumber}}</td>
+                    <td class="lotto">{{row.DrawDate | date:'yyyy-MM-dd' }}</td>
+                    <td ng-repeat="col in distanceCols">
+                        <span ng-show="row.dic[col+1] > 0" class="hit">
+                            {{row.dic[col+1]}}
+                        </span>
+                        <span ng-show="row.dic[col+1] == 0">
+                            {{row.dic[col+1]}}
+                        </span>
+                    </td>
+                    <td><span class="total">{{row.Total}}</span></td>
+
+                </tr>
+                <tr>
+                    <th>Draw Number</th>
+                    <th>Draw Date</th>
+                    <th ng-repeat="col in distanceCols">{{col}}</th>
+                    <th>Total</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

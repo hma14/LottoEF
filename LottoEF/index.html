@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../Content/bootstrap.css" rel="stylesheet" />
     <link href="../Content/Site.css" rel="stylesheet" />   
+    
     <base href="/" />
 </head>
-<body class="container-fluid" ng-app="LottoApp">
+<body class="container-fluid" ng-app="LottoApp" ng-controller="homeController">
+    <div class="navbar navbar-inverse navbar-fixed-top navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="/">Lotto Main</a></li>
+            <li><a href="Distances">Lotto Distance</a></li>
+            
+        </ul>
+    </div>
+    
     <div class="mainContent" ng-view>
  
     </div>

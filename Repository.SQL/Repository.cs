@@ -88,8 +88,16 @@ namespace Repository.SQL
         {
             using (var ctx = new LottoContext())
             {
-                var lastDrawNo = ctx.tblNumberInfoes.Where(x => x.LottoId == lottoId).AsEnumerable().ToList().Last().DrawNo;
-                return ctx.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo == lastDrawNo).AsEnumerable().ToList();
+                List<tblNumberInfo> result = new List<tblNumberInfo>();
+                if (ctx.tblNumberInfoes.Count() > 0)
+                {
+                    var lastEntry = ctx.tblNumberInfoes.Where(x => x.LottoId == lottoId).AsEnumerable().ToList().Last();
+                    if (lastEntry != null)
+                    {
+                        result = ctx.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo == lastEntry.DrawNo).AsEnumerable().ToList();
+                    }
+                }
+                return result;
             }
         }
 
