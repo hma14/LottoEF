@@ -91,7 +91,7 @@ namespace LottoEF.Controllers
                     if (l[i].isHit == true)
                     {
                         di.dic[l[i].SavedDistance]++;
-                        if (l[i].SavedDistance <= 11)
+                        if (l[i].SavedDistance <= 10)
                         {
                             total++;
                         }

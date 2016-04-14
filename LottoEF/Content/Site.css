@@ -177,7 +177,7 @@ td, th {
 
 td 
 {
-    color:darkcyan;
+    color:coral;
 
     font-size:1em!important;
     vertical-align:middle;
@@ -206,10 +206,6 @@ th
     color:chocolate;
 }
 
-table 
-{
-    margin:5px!important;
-}
 
 
 .ddl
