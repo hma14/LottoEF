@@ -24,6 +24,6 @@ namespace LottoEF.Models
         public int SavedDistance { get; set; }
 
         public bool isHit { get; set; }
-        public int Frequncy { get; set; }
+        public int Frequency { get; set; }
     }
 }

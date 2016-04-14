@@ -146,7 +146,7 @@ div.text-center a {
     font-weight:bold;
     background-color:yellow;
     background-size:auto;
-    padding:10px;
+    padding:8px;
    
 }
 
@@ -190,8 +190,23 @@ th
    
 }
 
+.caption
+{
+    text-align:left;
+    font-style:italic;
+    font-weight:bold;
+    font-size:.8em;
+    color:cadetblue;
+}
+
 .distance {
-    color:brown;
+    color:green;
+    font-size:.8em!important;
+    font-style:italic;
+}
+
+.frequency {
+    color:blueviolet;
     font-size:.8em!important;
     font-style:italic;
 }
@@ -269,6 +284,11 @@ label
     font-style:italic;
 }
 
+
+.notes{
+    font-size:0.8em;
+    font-style:italic;
+}
 
 
 /*.scroll {

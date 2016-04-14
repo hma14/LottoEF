@@ -55,11 +55,11 @@ namespace LottoEF.Controllers
                 var l = list.Where(x => x.DrawNo == d).ToList();
                 if (isDesc == true)
                 {
-                    nList.Add(l.OrderByDescending(x => x.Frequncy).ToList());
+                    nList.Add(l.OrderByDescending(x => x.Frequency).ToList());
                 }
                 else
                 {
-                    nList.Add(l.OrderBy(x => x.Frequncy).ToList());
+                    nList.Add(l.OrderBy(x => x.Frequency).ToList());
                 }
 
             }
@@ -97,6 +97,7 @@ namespace LottoEF.Controllers
                         }
                     }                    
                 }
+                di.Frequency = l.First().Frequency;
                 di.Total = total;
                 nList.Add(di);
             }

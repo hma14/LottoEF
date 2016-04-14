@@ -10,6 +10,7 @@ namespace LottoEF.Models
         public int DrawNumber { get; set; }
         public DateTime DrawDate { get; set; }
         public Dictionary<int, int> dic;
+        public int Frequency { get; set; }
         public int Total { get; set; }
         public DistanceInfo()
         {
