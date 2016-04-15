@@ -11,6 +11,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using LottoEF.Models;
 using NLog;
+using System.Web.Http.OData;
+using System.Web.OData.Routing;
 
 namespace LottoEF.Controllers
 {
@@ -20,10 +22,15 @@ namespace LottoEF.Controllers
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         // GET: api/tblNumberInfoes
+        [EnableQuery]
+        [ODataRoute]
         public IQueryable<tblNumberInfo> GettblNumberInfoes()
         {
             return db.tblNumberInfoes;
         }
+
+        [EnableQuery]
+        [ODataRoute]
         public List<List<tblNumberInfo>> GettblNumberInfoes(int lottoId, int startDrawNo)
         {
             Logger.Info(string.Format("GettblNumberInfoes(), lottoId: {0}, startDrawNo: {1}", lottoId, startDrawNo));
@@ -43,6 +50,8 @@ namespace LottoEF.Controllers
         }
 
         // GET: api/GettblNumberInfoes
+        [EnableQuery]
+        [ODataRoute]
         public List<List<tblNumberInfo>> GettblNumberInfoes(int lottoId, int startDrawNo, bool isDesc)
         {
             Logger.Info(string.Format("GettblNumberInfos(), lottoId: {0}, startDrawNo: {1}", lottoId, startDrawNo));
@@ -68,6 +77,8 @@ namespace LottoEF.Controllers
         }
 
         // GET: api/GettblNumberInfoes
+        [EnableQuery]
+        [ODataRoute]
         public List<DistanceInfo> GettblNumberInfoes(int lottoId, int startDrawNo, int flag)
         {
             Logger.Info(string.Format("GettblNumberInfos(), lottoId: {0}, startDrawNo: {1}", lottoId, startDrawNo));

@@ -1,19 +1,7 @@
 ﻿<div class="container-fluid" ng-controller="homeController" ng-init="getRange(2, selectedStart)">
     <br />
     <hr />
-    <form ng-submit="getRange(2, selectedStart)">
-        <div class="container-fluid col-lg-12">
-            <select class="ddlLonger form-horizontal form-inline" ng-model="selectedStat" ng-options="stat.id as stat.name for stat in statistics"></select>
-            <label for="ddl" class="text-info te">Select a start draw:</label>
-            <select id="ddl" class="ddl form-horizontal form-inline" ng-model="selectedStart" ng-options="draw for draw in startDraws | orderBy: 'draw'"></select>
-            <input class="btn btn-info btn-primary" id="submit" type="submit" value="Submit" />
-
-        </div>
-    </form>
     <div class="form-horizontal col-lg-12">
-        <img class="irc_mi" src="https://media.giphy.com/media/npCmk0VCFHyUM/giphy.gif" ng-show="loading">
-        <!--<div class="spinner1" ng-show="loading"></div>-->
-
         <table class="table-striped table-responsive">
             <caption class="caption">Rang of draws with full number statistics</caption>
             <tr>

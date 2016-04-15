@@ -190,6 +190,13 @@ th
    
 }
 
+.right
+{
+    float:right;
+    margin-top:8px;
+  
+}
+
 .caption
 {
     text-align:left;
@@ -200,13 +207,14 @@ th
 }
 
 .distance {
-    color:green;
+    color:blueviolet;
     font-size:.8em!important;
     font-style:italic;
+    font-weight:bold;
 }
 
 .frequency {
-    color:blueviolet;
+    color:darkgreen;
     font-size:.8em!important;
     font-style:italic;
 }
@@ -225,11 +233,10 @@ th
 
 .ddl
 {
-    width:200px;
+    width:100px;
     display:contents; 
-    height:34px;
     padding:6px 12px;
-    font-size:14px;
+    font-size:0.8em;
     line-height:1.4285;
     color:#555555;
     vertical-align:middle;
@@ -242,13 +249,20 @@ th
     transition:border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
 
 }
+.btn
+{
+    width:80px;
+    font-size:0.8em;
+    padding:5px 10px;
+}
+
 .ddlLonger
 {
-    width:400px;
+    width:250px;
     display:contents; 
-    height:34px;
+    
     padding:6px 12px;
-    font-size:14px;
+    font-size:0.8em;
     line-height:1.4285;
     color:#555555;
     vertical-align:middle;
@@ -264,7 +278,7 @@ th
 
 label
 {
-    font-size:1em;
+    font-size:0.8em;
 
 }
 .irc_mi {

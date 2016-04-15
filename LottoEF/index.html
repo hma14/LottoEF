@@ -12,12 +12,30 @@
 <body class="container-fluid" ng-app="LottoApp" ng-controller="homeController">
     <div class="navbar navbar-inverse navbar-fixed-top navbar-collapse collapse">
         <ul class="nav navbar-nav">
-            <li><a href="/">Lotto Main</a></li>
-            <li><a href="Distances">Lotto Distance</a></li>
+            <li ng-click="setSelection(1)"><a href="/" >Lotto Main</a></li>
+            <li ng-click="setSelection(2)"><a href="Distances" >Lotto Distance</a></li>
             
         </ul>
+        <div class="right">
+            <form ng-submit="getDistances(2, selectedFreqStart)" ng-show="currentSelected == 2">
+                <div class="container-fluid col-lg-12" ng-show="currentSelected == 2">
+                    <select id="ddl" class="ddl form-horizontal form-inline" ng-model="selectedFreqStart" ng-options="draw for draw in startDraws | orderBy: 'draw'"></select>
+                    <input class="btn btn-info btn-primary" id="submit" ng-click="getDistances(2, selectedFreqStart)" value="Submit" />
+
+                </div>
+            </form>
+            <form ng-submit="getRange(2, selectedStart)" ng-show="currentSelected == 1">
+                <div class="container-fluid col-lg-12">
+                    <select class="ddlLonger form-horizontal form-inline" ng-model="selectedStat" ng-options="stat.id as stat.name for stat in statistics"></select>
+                    <label for="ddl" class="text-info te">Select a start draw:</label>
+                    <select id="ddl" class="ddl form-horizontal form-inline" ng-model="selectedStart" ng-options="draw for draw in startDraws | orderBy: 'draw'"></select>
+                    <input class="btn btn-info btn-primary" id="submit" ng-click="getRange(2, selectedStart)" value ="Submit" />
+
+                </div>
+            </form>
+        </div>
     </div>
-    
+    <img class="irc_mi" src="https://media.giphy.com/media/npCmk0VCFHyUM/giphy.gif" ng-show="loading">
     <div class="mainContent" ng-view>
  
     </div>
