@@ -1,6 +1,6 @@
 ﻿body {
     width: 100%;
-    margin-right:2px!important;
+  
 }
 
 .container {
@@ -163,7 +163,7 @@ div.text-center a {
 table {
   border-spacing: 2.5rem;
   white-space:nowrap;
-  width: 900px; 
+  width: 100%; 
   table-layout:fixed;
 }
 
@@ -193,9 +193,9 @@ th
 .right
 {
     float:right;
-    margin-top:8px;
   
 }
+
 
 .caption
 {
@@ -227,15 +227,17 @@ th
 
 .lotto{
     color:chocolate;
+    font-size:0.8em;
+    color:blueviolet;
 }
 
 
 
 .ddl
 {
-    width:100px;
+    width:130px;
     display:contents; 
-    padding:6px 12px;
+    padding:4px 2px;
     font-size:0.8em;
     line-height:1.4285;
     color:#555555;
@@ -247,21 +249,23 @@ th
     box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
     -webkit-transition:border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
     transition:border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
-
+    margin-top:10px;
 }
 .btn
 {
     width:80px;
     font-size:0.8em;
-    padding:5px 10px;
+    padding:2px 4px;
+    margin-top:8px;
+    align-content:center;
 }
 
 .ddlLonger
 {
-    width:250px;
+    width:280px;
     display:contents; 
     
-    padding:6px 12px;
+    padding:4px 2px;
     font-size:0.8em;
     line-height:1.4285;
     color:#555555;
@@ -273,9 +277,29 @@ th
     box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
     -webkit-transition:border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
     transition:border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
-
+    margin-top:10px;
 }
 
+
+.ddlShorter
+{
+    width:100px;
+    display:contents; 
+    
+    padding:4px 2px;
+    font-size:0.8em;
+    line-height:1.4285;
+    color:#555555;
+    vertical-align:middle;
+    background-color:#ffffff;
+    border:1px solid #cccccc;
+    border-radius:4px;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition:border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
+    transition:border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
+    margin-top:10px;
+}
 label
 {
     font-size:0.8em;
@@ -302,6 +326,17 @@ label
 .notes{
     font-size:0.8em;
     font-style:italic;
+}
+
+input:focus {
+    background-color: yellow;
+}
+
+.navbar
+{
+    background-color:antiquewhite;
+   
+
 }
 
 

@@ -203,6 +203,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DistanceInfo.cs" />
+    <Compile Include="Models\LottoAuthorizeAttribute.cs" />
     <Compile Include="Models\LottoWebContext.cs" />
     <Compile Include="Models\tblNumberInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1060,7 +1061,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Templates\BC49.html" />
+    <Content Include="Templates\ShowAllNumbers.html" />
     <Content Include="Templates\Distances.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1079,9 +1080,9 @@
       <Project>{cc9b948d-c21f-431e-ad2e-c100b5b5f7a5}</Project>
       <Name>Repository.SQL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Service.Lotto\Service.Lotto.csproj">
+    <ProjectReference Include="..\Service.Lotto\Service.Lotteries.csproj">
       <Project>{53c1205d-624e-4380-a288-2f0066722997}</Project>
-      <Name>Service.Lotto</Name>
+      <Name>Service.Lotteries</Name>
     </ProjectReference>
     <ProjectReference Include="..\Service\Service.csproj">
       <Project>{323dc5ac-a234-4386-bc8f-734b3d3d516d}</Project>

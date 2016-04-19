@@ -89,11 +89,14 @@ namespace LottoEF.Controllers
             for (int d = startDrawNo; d <= lastDrawNo; d++)
             {
                 var l = list.Where(x => x.DrawNo == d).ToArray();
+                if (l == null || l.Count() == 0) continue;
+
                 DistanceInfo di = new DistanceInfo();
                 for(int i = 0; i < 200; i++)
                 {
                     di.dic[i] = 0;
                 }
+                
                 di.DrawNumber = l.First().DrawNo;
                 di.DrawDate = l.First().DrawDate;
                 int total = 0;

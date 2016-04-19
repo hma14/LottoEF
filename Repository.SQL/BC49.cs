@@ -28,6 +28,5 @@ namespace Repository.SQL
         public int? Number6 { get; set; }
 
         public int? Bonus { get; set; }
-        public int FieldsChanged { get; set; }
     }
 }

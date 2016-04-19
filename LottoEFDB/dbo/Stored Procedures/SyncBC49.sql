@@ -14,10 +14,10 @@ AS
 	,a.Number5
 	,a.Number6
 	,a.Bonus
-	,case when CT.SYS_CHANGE_COLUMNS is null then 0 else
-	CHANGE_TRACKING_IS_COLUMN_IN_MASK(COLUMNPROPERTY(OBJECT_ID('BC49'), 'DrawNumber', 'ColumnId'), CT.SYS_CHANGE_COLUMNS) 
-	+CHANGE_TRACKING_IS_COLUMN_IN_MASK(COLUMNPROPERTY(OBJECT_ID('BC49'), 'DrawDate', 'ColumnId'), CT.SYS_CHANGE_COLUMNS) END
-	FieldsChanged
+	--,case when CT.SYS_CHANGE_COLUMNS is null then 0 else
+	--CHANGE_TRACKING_IS_COLUMN_IN_MASK(COLUMNPROPERTY(OBJECT_ID('BC49'), 'DrawNumber', 'ColumnId'), CT.SYS_CHANGE_COLUMNS) 
+	--+CHANGE_TRACKING_IS_COLUMN_IN_MASK(COLUMNPROPERTY(OBJECT_ID('BC49'), 'DrawDate', 'ColumnId'), CT.SYS_CHANGE_COLUMNS) END
+	--FieldsChanged
 --FROM (select name from dbo.LottoName where name = @name) as a 
 FROM [dbo].[BC49] as a
 	join CHANGETABLE(CHANGES [dbo].[BC49], @lastversion) AS CT on CT.DrawNumber= a.DrawNumber

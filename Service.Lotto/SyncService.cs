@@ -1,12 +1,11 @@
-﻿using Model;
-using Repository.SQL;
+﻿using Repository.SQL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.Lotto
+namespace Service.Lotteries
 {
     public class SyncService : ISyncService
     {
@@ -27,10 +26,6 @@ namespace Service.Lotto
             _repository.SetSetting(name, value);
         }
 
-        public SyncResult<BC49> GetSyncBC49(long lastVersion)
-        {
-            return _repository.GetSyncBC49(lastVersion);
-        }
 
         public List<tblNumberInfo> GetLastRow(int lottoId)
         {
@@ -44,6 +39,31 @@ namespace Service.Lotto
         public tblNumberInfo GetLastDrawNo(int lottoId)
         {
             return _repository.GetLastDrawNo(lottoId);
+        }
+        public List<Lotto> GetLottos()
+        {
+            return _repository.GetLottos();
+        }
+        public List<LottoName> GetLottoNames()
+        {
+            return _repository.GetLottoNames();
+        }
+        public SyncResult<BC49> GetSyncBC49(long lastVersion)
+        {
+            return _repository.GetSyncBC49(lastVersion);
+        }
+        public SyncResult<Lottery> GetSyncLotto649(long lastVersion)
+        {
+            return _repository.GetSyncLotto649(lastVersion);
+        }
+        public SyncResult<LottoMax> GetSyncLottoMax(long lastVersion)
+        {
+            return _repository.GetSyncLottoMax(lastVersion);
+        }
+
+        public SyncResult<T> GetSyncResults<T>(long lastVersion, string procName)
+        {
+            return _repository.GetSyncResults<T>(lastVersion, procName);
         }
     }
 }

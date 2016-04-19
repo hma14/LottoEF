@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.SQL", "Repositor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{323DC5AC-A234-4386-BC8F-734B3D3D516D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Lotto", "Service.Lotto\Service.Lotto.csproj", "{53C1205D-624E-4380-A288-2F0066722997}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Lotteries", "Service.Lotto\Service.Lotteries.csproj", "{53C1205D-624E-4380-A288-2F0066722997}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{12164268-1DDA-4789-9E14-EF07117E00B0}"
 EndProject

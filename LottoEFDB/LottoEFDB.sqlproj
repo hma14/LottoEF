@@ -414,6 +414,8 @@
     <Build Include="dbo\Tables\tblLottoStats.sql" />
     <Build Include="dbo\Stored Procedures\SyncBC49.sql" />
     <Build Include="dbo\Tables\Setting.sql" />
+    <Build Include="dbo\Stored Procedures\SyncLotto649.sql" />
+    <Build Include="dbo\Stored Procedures\SyncLottoMax.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="LottoEFDB.refactorlog" />

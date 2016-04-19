@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Model;
 using System.Data;
 
 namespace Repository.SQL
@@ -43,6 +42,14 @@ namespace Repository.SQL
         {
             return GetSyncResults<BC49>(lastVersion, "SyncBC49");
         }
+        public SyncResult<Lottery> GetSyncLotto649(long lastVersion)
+        {
+            return GetSyncResults<Lottery>(lastVersion, "SyncLotto649");
+        }
+        public SyncResult<LottoMax> GetSyncLottoMax(long lastVersion)
+        {
+            return GetSyncResults<LottoMax>(lastVersion, "SyncLottoMax");
+        }       
 
         public SyncResult<T> GetSyncResults<T>(long lastVersion, string procName)
         {
@@ -91,7 +98,10 @@ namespace Repository.SQL
                 List<tblNumberInfo> result = new List<tblNumberInfo>();
                 if (ctx.tblNumberInfoes.Count() > 0)
                 {
-                    var lastEntry = ctx.tblNumberInfoes.Where(x => x.LottoId == lottoId).AsEnumerable().ToList().Last();
+                    var list = ctx.tblNumberInfoes.Where(x => x.LottoId == lottoId).AsEnumerable().ToList();
+                    if (list.Count == 0)
+                        return null;
+                    var lastEntry = list.Last();
                     if (lastEntry != null)
                     {
                         result = ctx.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo == lastEntry.DrawNo).AsEnumerable().ToList();
@@ -113,7 +123,24 @@ namespace Repository.SQL
         {
             using (var ctx = new LottoContext())
             {
+                if (ctx.tblNumberInfoes.Where(x => x.LottoId == lottoId) == null)
+                    return null;
                 return ctx.tblNumberInfoes.Where(x => x.LottoId == lottoId).AsEnumerable().ToList().Last();
+            }
+        }
+
+        public List<Lotto> GetLottos()
+        {
+            using (var ctx = new LottoContext())
+            {
+                return ctx.Lottos.AsEnumerable().ToList();
+            }
+        }
+        public List<LottoName> GetLottoNames()
+        {
+            using (var ctx = new LottoContext())
+            {
+                return ctx.LottoNames.AsEnumerable().ToList();
             }
         }
     }

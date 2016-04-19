@@ -12,3 +12,16 @@
     CONSTRAINT [PK_tblNumberInfo] PRIMARY KEY ([Id]) 
 )
 
+GO
+CREATE NONCLUSTERED INDEX [_dta_index_tblNumberInfo_23_1731589307__K3_1_2_4_5_6_7_8_9] ON [dbo].[tblNumberInfo]
+(
+	[LottoId] ASC
+)
+INCLUDE ( 	[Id],
+	[Number],
+	[DrawNo],
+	[DrawDate],
+	[Distance],
+	[SavedDistance],
+	[isHit],
+	[Frequency]) WITH (SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
