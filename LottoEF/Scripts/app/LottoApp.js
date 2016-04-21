@@ -18,7 +18,7 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
    
     .when('/Distances', {
         templateUrl: 'Templates/Distances.html',
-        //controller: 'homeController'
+        controller: 'homeController'
     })
     .otherwise({
         redirestTo: '/'
@@ -68,18 +68,7 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
     $scope.distanceCols = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     $scope.currentSelected = 1;
-    //$scope.lottoId = superCache.get('LottoId') != undefined ? superCache.get('LottoId') : 2;
-    //$scope.setSelection = function(value, id)
-    //{      
-    //    $scope.currentSelected = value;       
-    //    $scope.lottoId = id;
-    //    if ($scope.lottoId == 1) // LottoMax
-    //    {
-    //        $scope.pastDraws = 1;
-    //        $rootScope.selectedFreqStart = 1;
-    //    }
-    //}
-
+   
     var successCallBack = function (response) {
         $scope.error = '';
         $rootScope.rows = response;
@@ -98,7 +87,7 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
         superCache.put('FrequencySelected', $rootScope.selectedFreqStart);
         superCache.put('FrequencyData', $rootScope.rows);
         superCache.put('SelectedNumberStat', $scope.selectedNumberStat);
-        //$scope.loading = false;
+        $scope.loading = false;
         //$log.info(response);
     }
 
