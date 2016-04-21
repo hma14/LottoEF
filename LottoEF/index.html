@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html manifest="manifest-file">
 <head>
     <title></title>
     <meta charset="utf-8" />
@@ -24,11 +24,11 @@
                 </form>
             </div>
             <div class="col-md-9 right">
-                <form ng-submit="getRange(lottoId, selectedStart)">
+                <form ng-submit="getRange(lottoId)">
 
-                    <select class="ddlLonger form-horizontal form-inline" ng-model="selectedStat" ng-options="stat.id as stat.name for stat in statistics"></select>
+                    <select class="ddlLonger form-horizontal form-inline" ng-model="selectedStat"  ng-options="stat.id as stat.name for stat in statistics"></select>
                     <label for="ddl1" class="text-info text">Start Draw:</label>
-                    <select id="ddl1" class="ddlShorter form-horizontal form-inline" ng-model="selectedStart" ng-options="draw for draw in startDraws | orderBy: 'draw'"></select>
+                    <select id="ddl1" class="ddlShorter form-horizontal form-inline" ng-model="selectedPastDraws" ng-options="draw for draw in pastDraws | orderBy: 'draw'"></select>
                     <label for="ddl3" class="text-info text">Lottos:</label>
                     <select id="ddl3" class="ddlLonger form-horizontal form-inline" ng-model="lottoId" ng-options="lotto.id as lotto.name for lotto in lottos | orderBy: 'lotto.id'"></select>
                     <input class="btn btn-info btn-primary" id="submit" type="submit" value="Submit" />

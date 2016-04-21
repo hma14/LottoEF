@@ -26,12 +26,12 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
     $locationProvider.html5Mode(true);
 })
 .factory('Lotto', ['$resource', function ($resource) {
-    return $resource('api/tblNumberInfoes/:id', { lottoId: '@lottoId', startDrawNo: '@startDrawNo', isDesc: '@isDesc', flag: '@flag' }, {
+    return $resource('api/tblNumberInfoes/:id', { lottoId: '@lottoId', startDrawNo: '@pastDraws', isDesc: '@isDesc', flag: '@flag' }, {
         get: { method: 'GET', cache: true, isArray: true },
         getById: { method: 'GET', cache: true, url: 'api/tblNumberInfoes/5', isArray: true },
-        getByRange: { method: 'GET', cache: true, url: 'api/tblNumberInfoes?lottoId=:lottoId&startDrawNo=:startDrawNo', isArray: true },
-        getByFrequency: { method: 'GET', cache: true, url: 'api/tblNumberInfoes?lottoId=:lottoId&startDrawNo=:startDrawNo&isDesc=:isDesc', isArray: true },
-        getByDistance: { method: 'GET', cache: true, url: 'api/tblNumberInfoes?lottoId=:lottoId&startDrawNo=:startDrawNo&flag=:flag', isArray: true },
+        getByRange: { method: 'GET', cache: true, url: 'api/tblNumberInfoes?lottoId=:lottoId&pastDraws=:pastDraws', isArray: true },
+        getByFrequency: { method: 'GET', cache: true, url: 'api/tblNumberInfoes?lottoId=:lottoId&pastDraws=:pastDraws&isDesc=:isDesc', isArray: true },
+        getByDistance: { method: 'GET', cache: true, url: 'api/tblNumberInfoes?lottoId=:lottoId&pastDraws=:pastDraws&flag=:flag', isArray: true },
     })
 }])
 
@@ -39,11 +39,12 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
     return $cacheFactory('super-cache');
 }])
 
-.controller('homeController', ['$scope', '$rootScope', '$log', '$location', 'Lotto', 'superCache', function ($scope, $rootScope, $log, $location, Lotto, superCache) {
+.controller('homeController', ['$scope', '$rootScope', '$log', '$location', 'Lotto', 'superCache', '$route', '$filter', 
+    function ($scope, $rootScope, $log, $location, Lotto, superCache, $route, $filter) {
 
     $scope.error = '';
 
-    $scope.startDraws = [1, 200, 300, 1000, 1500, 2000, 2100, 2200, 2300, 2400, 2500, 2550, 2600, 2700, 2800, 2900, 3000, 3300];
+    $scope.pastDraws = [50, 100, 200, 300, 400, 500,600,700,800, 900, 1000];
     $scope.lottos = [{ "id": 0, "name": 'Lottery' },
                      { "id": 1, "name": 'LottoMax' },
                      { "id": 2, "name": 'BC49' }];
@@ -55,8 +56,8 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
                               ];
     $scope.selectedNumberStat = superCache.get('SelectedNumberStat') != undefined ? superCache.get('SelectedNumberStat') : $scope.numberStatistics[1].id;
 
-    $scope.selectedStart = superCache.get('RangeSelected') != undefined ? superCache.get('RangeSelected') : $scope.startDraws[10];
-    $rootScope.selectedFreqStart = superCache.get('FrequencySelected') != undefined ? superCache.get('FrequencySelected') : $scope.startDraws[10];
+    $scope.selectedPastDraws = superCache.get('RangeSelected') != undefined ? superCache.get('RangeSelected') : $scope.pastDraws[1];
+    $rootScope.selectedFreqStart = superCache.get('FrequencySelected') != undefined ? superCache.get('FrequencySelected') : $scope.pastDraws[1];
 
     $scope.statistics = [{ "id": 1, "name": 'Natural Number Order (1..49)' },
                          { "id": 2, "name": 'Frequency Ascending Order (Left to Right)' },
@@ -68,21 +69,21 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
 
     $scope.currentSelected = 1;
     //$scope.lottoId = superCache.get('LottoId') != undefined ? superCache.get('LottoId') : 2;
-    $scope.setSelection = function(value, id)
-    {      
-        $scope.currentSelected = value;       
-        $scope.lottoId = id;
-        if ($scope.lottoId == 1) // LottoMax
-        {
-            $scope.startDraws = 1;
-            $rootScope.selectedFreqStart = 1;
-        }
-    }
+    //$scope.setSelection = function(value, id)
+    //{      
+    //    $scope.currentSelected = value;       
+    //    $scope.lottoId = id;
+    //    if ($scope.lottoId == 1) // LottoMax
+    //    {
+    //        $scope.pastDraws = 1;
+    //        $rootScope.selectedFreqStart = 1;
+    //    }
+    //}
 
     var successCallBack = function (response) {
         $scope.error = '';
         $rootScope.rows = response;
-        superCache.put('RangeSelected', $scope.selectedStart);
+        superCache.put('RangeSelected', $scope.selectedPastDraws);
         superCache.put('RangeData', $rootScope.rows);
         superCache.put('LottoId', $scope.lottoId);
         superCache.put('SelectedNumberStat', $scope.selectedNumberStat);
@@ -97,7 +98,7 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
         superCache.put('FrequencySelected', $rootScope.selectedFreqStart);
         superCache.put('FrequencyData', $rootScope.rows);
         superCache.put('SelectedNumberStat', $scope.selectedNumberStat);
-        $scope.loading = false;
+        //$scope.loading = false;
         //$log.info(response);
     }
 
@@ -106,62 +107,60 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
         $log.info(reason);
     }
 
-    $scope.getRange = function (lottoId, selectedStart) {
+
+    $scope.getRange = function (lottoId) {
         $scope.loading = true;
-        if ($scope.lottoId == 1 && selectedStart > 1000) // LottoMax
-            selectedStart = 1;
-        if ($scope.selectedNumberStat == 1)
-        {
-            $scope.getDistances($scope.selectedNumberStat);
-        }
+        if ($scope.lottoId == 1 && $scope.selectedPastDraws > 400) // LottoMax
+            selectedPastDraws = 100;        
+
         if ($scope.selectedStat == 1) {
             
             if (superCache.get('LottoId') == lottoId &&
-                superCache.get('RangeSelected') == selectedStart &&
+                superCache.get('RangeSelected') == $scope.selectedPastDraws &&
                 superCache.get('selectedStat') == 1) {
                 $rootScope.rows = superCache.get('RangeData');
-                $scope.loading = false;
 
             }
             else {
-                Lotto.getByRange({ lottoId: lottoId, startDrawNo: selectedStart })
+                Lotto.getByRange({ lottoId: lottoId, pastDraws: $scope.selectedPastDraws })
                 .$promise.then(successCallBack, errorCallBack);
                 superCache.put('selectedStat', 1);
             }
         }
         else if ($scope.selectedStat == 2) {
-            Lotto.getByFrequency({ lottoId: lottoId, startDrawNo: selectedStart, isDesc: false })
+            Lotto.getByFrequency({ lottoId: lottoId, pastDraws: $scope.selectedPastDraws, isDesc: false })
             .$promise.then(successCallBack, errorCallBack);
             superCache.put('selectedStat', 2);
         }
         else {
-            Lotto.getByFrequency({ lottoId: lottoId, startDrawNo: selectedStart, isDesc: true })
+            Lotto.getByFrequency({ lottoId: lottoId, pastDraws: $scope.selectedPastDraws, isDesc: true })
                 .$promise.then(successCallBack, errorCallBack);
             superCache.put('selectedStat', 3);
         }
+        $scope.loading = false;
         $location.url('/');
     }
 
     $scope.getDistances = function (selectedNumberStat)
     {
-        if ($scope.lottoId == 1 && $scope.selectedStart > 1000)
-            $scope.selectedStart = 1;
+        if ($scope.lottoId == 1 && $scope.selectedPastDraws > 400)
+            $scope.selectedPastDraws = 100;
         if (selectedNumberStat == 1) { // Lotto Distances
             if (superCache.get('LottoId') == $scope.lottoId &&
-                superCache.get('RangeSelected') == $scope.selectedStart &&
+                superCache.get('RangeSelected') == $scope.selectedPastDraws &&
                 superCache.get('SelectedNumberStat') == selectedNumberStat) {
                 $rootScope.rows = superCache.get('FrequencyData');
 
             }
             else {
                 $scope.loading = true;               
-                Lotto.getByDistance({ lottoId: $scope.lottoId, startDrawNo: $scope.selectedStart, flag: 1 })
+                Lotto.getByDistance({ lottoId: $scope.lottoId, pastDraws: $scope.selectedPastDraws, flag: 1 })
                     .$promise.then(successCallBackOnFrequency, errorCallBack);
             }
             $location.url('/Distances');
         }
-        else if (selectedNumberStat == 2) { // Show all numbers
-            $scope.getRange($scope.lottoId, $scope.selectedStart);
+        else if (selectedNumberStat == 2) { // // switch to Show all numbers
+            $scope.getRange($scope.lottoId, $scope.selectedPastDraws);
         }
     }
 

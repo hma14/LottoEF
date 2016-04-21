@@ -14,16 +14,23 @@ using NLog;
 using System.Web.Http.OData;
 using System.Web.OData.Routing;
 
+using System.Net.Http.Headers;
+using WebApi.OutputCache.V2;
+
 namespace LottoEF.Controllers
 {
+    
     public class tblNumberInfoesController : ApiController
     {
         private LottoWebContext db = new LottoWebContext();
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+       
+
         // GET: api/tblNumberInfoes
         [EnableQuery]
         [ODataRoute]
+        [CacheOutput(ClientTimeSpan = 600, ServerTimeSpan = 600)]
         public IQueryable<tblNumberInfo> GettblNumberInfoes()
         {
             return db.tblNumberInfoes;
@@ -31,14 +38,17 @@ namespace LottoEF.Controllers
 
         [EnableQuery]
         [ODataRoute]
-        public List<List<tblNumberInfo>> GettblNumberInfoes(int lottoId, int startDrawNo)
+        [CacheOutput(ClientTimeSpan = 600, ServerTimeSpan = 600)]
+        public List<List<tblNumberInfo>> GettblNumberInfoes(int lottoId, int pastDraws)
         {
-            Logger.Info(string.Format("GettblNumberInfoes(), lottoId: {0}, startDrawNo: {1}", lottoId, startDrawNo));
+            int lastDrawNo = db.tblNumberInfoes.Where(x => x.LottoId == lottoId).AsQueryable().ToList().Last().DrawNo;
+            int startDrawNo = lastDrawNo - pastDraws;
+            Logger.Info(string.Format("GettblNumberInfos(), lottoId: {0}, startDrawNo: {1}", lottoId, startDrawNo));
             var list = db.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo >= startDrawNo);
+
             List<List<tblNumberInfo>> nList = new List<List<tblNumberInfo>>();
             if (list != null && list.Count() > 0)
             {
-                int lastDrawNo = list.AsQueryable().ToList().Last().DrawNo;
                 for (int d = startDrawNo; d <= lastDrawNo; d++)
                 {
                     var l = list.Where(x => x.DrawNo == d).ToList();
@@ -52,13 +62,16 @@ namespace LottoEF.Controllers
         // GET: api/GettblNumberInfoes
         [EnableQuery]
         [ODataRoute]
-        public List<List<tblNumberInfo>> GettblNumberInfoes(int lottoId, int startDrawNo, bool isDesc)
+        [CacheOutput(ClientTimeSpan = 600, ServerTimeSpan = 600)]
+        public List<List<tblNumberInfo>> GettblNumberInfoes(int lottoId, int pastDraws, bool isDesc)
         {
+            int lastDrawNo = db.tblNumberInfoes.Where(x => x.LottoId == lottoId).AsQueryable().ToList().Last().DrawNo;
+            int startDrawNo = lastDrawNo - pastDraws;
             Logger.Info(string.Format("GettblNumberInfos(), lottoId: {0}, startDrawNo: {1}", lottoId, startDrawNo));
             var list = db.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo >= startDrawNo);
 
             List<List<tblNumberInfo>> nList = new List<List<tblNumberInfo>>();
-            int lastDrawNo = list.AsQueryable().ToList().Last().DrawNo;
+            
             for (int d = startDrawNo; d <= lastDrawNo; d++)
             {
                 var l = list.Where(x => x.DrawNo == d).ToList();
@@ -73,19 +86,21 @@ namespace LottoEF.Controllers
 
             }
             return nList;
-            //return db.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo >= startDrawNo);
         }
 
         // GET: api/GettblNumberInfoes
         [EnableQuery]
         [ODataRoute]
-        public List<DistanceInfo> GettblNumberInfoes(int lottoId, int startDrawNo, int flag)
+        [CacheOutput(ClientTimeSpan = 600, ServerTimeSpan = 600)]
+        public List<DistanceInfo> GettblNumberInfoes(int lottoId, int pastDraws, int flag)
         {
+            int lastDrawNo = db.tblNumberInfoes.Where(x => x.LottoId == lottoId).AsQueryable().ToList().Last().DrawNo;
+            int startDrawNo = lastDrawNo - pastDraws;
             Logger.Info(string.Format("GettblNumberInfos(), lottoId: {0}, startDrawNo: {1}", lottoId, startDrawNo));
             var list = db.tblNumberInfoes.Where(x => x.LottoId == lottoId && x.DrawNo >= startDrawNo);
 
             List<DistanceInfo> nList = new List<DistanceInfo>();
-            int lastDrawNo = list.AsQueryable().ToList().Last().DrawNo;
+            
             for (int d = startDrawNo; d <= lastDrawNo; d++)
             {
                 var l = list.Where(x => x.DrawNo == d).ToArray();
