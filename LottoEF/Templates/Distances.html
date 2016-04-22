@@ -37,6 +37,7 @@
             </tbody>
         </table>
         <div class="text-info notes">Notes: 1 - 10 are distance range under each is number of hit(s) falling in for each draw</div>
+        <div class="text-info notes" ng-show="ProcessTime != undefined">Rendering time: <span class="alert-info">{{ProcessTime}}</span> sec</div>
     </div>
     <div class="col-lg-12 errors" ng-show="error != ''">{{error}}</div>
 </div>

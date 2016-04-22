@@ -42,7 +42,7 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
 .controller('homeController', ['$scope', '$rootScope', '$log', '$location', 'Lotto', 'superCache', '$route', '$filter', 
     function ($scope, $rootScope, $log, $location, Lotto, superCache, $route, $filter) {
 
-    $scope.error = '';
+        $scope.error = '';
 
     $scope.pastDraws = [50, 100, 200, 300, 400, 500,600,700,800, 900, 1000];
     $scope.lottos = [{ "id": 0, "name": 'Lottery' },
@@ -71,24 +71,32 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
    
     var successCallBack = function (response) {
         $scope.error = '';
+        var startTime = new Date();
         $rootScope.rows = response;
         superCache.put('RangeSelected', $scope.selectedPastDraws);
         superCache.put('RangeData', $rootScope.rows);
         superCache.put('LottoId', $scope.lottoId);
         superCache.put('SelectedNumberStat', $scope.selectedNumberStat);
 
+        setTimeout(function () {
+            $rootScope.ProcessTime = (new Date() - startTime) / 1000;
+        }); // Leave timeout empty to fire on next tick
         $scope.loading = false;
         //$log.info(response);
     }
 
     var successCallBackOnFrequency = function (response) {
         $scope.error = '';
+        var startTime = new Date();
         $rootScope.rows = response;
         superCache.put('FrequencySelected', $rootScope.selectedFreqStart);
         superCache.put('FrequencyData', $rootScope.rows);
         superCache.put('SelectedNumberStat', $scope.selectedNumberStat);
+
+        setTimeout(function () {
+            $rootScope.ProcessTime = (new Date() - startTime) / 1000;
+        }); // Leave timeout empty to fire on next tick
         $scope.loading = false;
-        //$log.info(response);
     }
 
     var errorCallBack = function (reason) {
@@ -108,7 +116,7 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
                 superCache.get('RangeSelected') == $scope.selectedPastDraws &&
                 superCache.get('selectedStat') == 1) {
                 $rootScope.rows = superCache.get('RangeData');
-
+                $scope.loading = false;
             }
             else {
                 Lotto.getByRange({ lottoId: lottoId, pastDraws: $scope.selectedPastDraws })
@@ -126,12 +134,12 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
                 .$promise.then(successCallBack, errorCallBack);
             superCache.put('selectedStat', 3);
         }
-        $scope.loading = false;
         $location.url('/');
     }
 
     $scope.getDistances = function (selectedNumberStat)
     {
+        $scope.loading = true;
         if ($scope.lottoId == 1 && $scope.selectedPastDraws > 400)
             $scope.selectedPastDraws = 100;
         if (selectedNumberStat == 1) { // Lotto Distances
@@ -139,7 +147,7 @@ var LottoApp = angular.module('LottoApp', ['ngRoute', 'ngResource'])
                 superCache.get('RangeSelected') == $scope.selectedPastDraws &&
                 superCache.get('SelectedNumberStat') == selectedNumberStat) {
                 $rootScope.rows = superCache.get('FrequencyData');
-
+                $scope.loading = false;
             }
             else {
                 $scope.loading = true;               
